@@ -1,5 +1,8 @@
 # BankData-Germany: Data and BIC Validator for German Banks.
 
+![CI: Lint, test and build](https://github.com/baumerdev/bankdata-germany/workflows/Lint,%20test%20and%20build/badge.svg?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/baumerdev/bankdata-germany/badge.svg?branch=main)](https://coveralls.io/github/baumerdev/bankdata-germany?branch=main)
+
 This TypeScript/JavaScript library contains bank data for German banks like
 names and BIC/Swift Codes. You can use it e.g to enhance
 user-interfaces/forms where a user enters an IBAN and you automatically fill
