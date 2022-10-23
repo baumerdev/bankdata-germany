@@ -1,0 +1,72 @@
+{
+  "name": "bankdata-germany",
+  "version": "0.0.1",
+  "description": "Validator, tools and data for German bank accounts",
+  "author": "Markus Baumer <markus@baumer.dev>",
+  "repository": "https://github.com/baumerdev/bankdata-germany",
+  "homepage": "https://baumerdev.github.io/bankdata-germany/",
+  "license": "AGPL",
+  "keywords": [
+    "iban",
+    "sepa",
+    "bban",
+    "bank",
+    "bic",
+    "validator",
+    "germany",
+    "bankleitzahl",
+    "blz"
+  ],
+  "main": "./dist/cjs/main.js",
+  "module": "./dist/esm/main.js",
+  "types": "./dist/cjs/main.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/main.js",
+      "import": "./dist/esm/main.js"
+    }
+  },
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "import": "ts-node src/cli/import.ts",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint src/ --ext .js,.jsx,.ts,.tsx --fix",
+    "test": "jest",
+    "test:dev": "jest --watchAll",
+    "test:coverage": "rimraf coverage && jest --coverage",
+    "clean": "rimraf dist docs coverage package bankdata-germany*.tgz",
+    "docs": "rimraf docs && typedoc --entryPoints src/main.ts --out docs/",
+    "build": "tsc -p tsconfig.build.json",
+    "build:all": "rimraf dist && npm run build && npm run esm-wrapper && npm run esbuild",
+    "esm-wrapper": "ts-node src/cli/esm-wrapper.ts",
+    "esbuild": "esbuild src/browser.ts --bundle --minify --outfile=dist/build/browser.js",
+    "prepare": "husky install",
+    "prepack": "npm run clean && npm run lint && npm run test && npm run build:all"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.0",
+    "@types/node": "^18.11.3",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "esbuild": "^0.15.12",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prefer-arrow-functions": "^3.1.4",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-typescript-sort-keys": "^2.1.0",
+    "husky": "^8.0.1",
+    "jest": "29.2.1",
+    "jest-environment-jsdom": "^29.2.1",
+    "npm-check-updates": "^16.3.14",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.23.17",
+    "typescript": "^4.8.4"
+  }
+}

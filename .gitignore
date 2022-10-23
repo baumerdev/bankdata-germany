@@ -1,0 +1,23 @@
+# Current version should be loaded from
+# https://www.bundesbank.de/de/aufgaben/unbarer-zahlungsverkehr/serviceangebot/bankleitzahlen/download-bankleitzahlen-602592
+/src/data/blz-aktuell-txt-data.txt
+
+# Project stuff
+/coverage/
+/dist/
+/docs/
+
+# WebStorm
+.idea/*
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# NPM
+/node_modules/
+package/
+*.tgz
+*.log
