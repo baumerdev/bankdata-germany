@@ -1,7 +1,7 @@
 {
   "name": "bankdata-germany",
   "version": "0.0.1",
-  "description": "Validator, tools and data for German bank accounts",
+  "description": "Data and BIC Validator for German Banks",
   "author": "Markus Baumer <markus@baumer.dev>",
   "repository": "https://github.com/baumerdev/bankdata-germany",
   "homepage": "https://baumerdev.github.io/bankdata-germany/",
