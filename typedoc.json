@@ -2,7 +2,8 @@
   "includeVersion": true,
   "sidebarLinks": {
     "Github Repository": "https://github.com/baumerdev/bankdata-germany",
-    "NPMJS Package": "https://www.npmjs.com/package/bankdata-germany"
+    "NPMJS Package": "https://www.npmjs.com/package/bankdata-germany",
+    "IBANTools-Germany": "https://baumerdev.github.io/ibantools-germany/"
   },
   "titleLink": "https://github.com/baumerdev/bankdata-germany"
 }
