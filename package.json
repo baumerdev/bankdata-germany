@@ -1,6 +1,6 @@
 {
   "name": "bankdata-germany",
-  "version": "1.2200.0",
+  "version": "1.2201.0",
   "description": "Data and BIC Validator for German Banks",
   "author": "Markus Baumer <markus@baumer.dev>",
   "repository": "https://github.com/baumerdev/bankdata-germany",
@@ -30,6 +30,7 @@
     "dist/"
   ],
   "scripts": {
+    "main": "ts-node src/main.ts",
     "import": "ts-node src/cli/import.ts",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint src/ --ext .js,.jsx,.ts,.tsx --fix",

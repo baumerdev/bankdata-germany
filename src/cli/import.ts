@@ -51,10 +51,14 @@ const datasets = blzFile
 // ignore the rest.
 const masterDatasets = datasets.filter((dataset) => dataset.master);
 
+interface BankData {
+  [blz: number]: string[];
+}
+
 // Write all bank names and BIC for BLZ
 // To reduce file size the values are stored in arrays to omit the repetition
 // of field names for each entry.
-const dataBank: { [blz: number]: string[] } = {};
+const dataBank: BankData = {};
 masterDatasets.forEach((dataset) => {
   const data = [dataset.name];
   if (dataset.bic) {
@@ -62,4 +66,66 @@ masterDatasets.forEach((dataset) => {
   }
   dataBank[dataset.blz] = data;
 });
-fs.writeFileSync(`${__dirname}/../data/current.json`, JSON.stringify(dataBank));
+
+// If file doesn't exist just write it and we're done
+if (!fs.existsSync(`${__dirname}/../data/current.json`)) {
+  fs.writeFileSync(
+    `${__dirname}/../data/current.json`,
+    JSON.stringify(dataBank)
+  );
+
+  process.exit(0);
+}
+
+if (
+  typeof process.argv[2] !== "string" ||
+  !process.argv[2].match(
+    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:UTC|[+-]\d{4})/
+  )
+) {
+  console.error("Please provide a valid-from datetime");
+  process.exit(1);
+}
+
+// Get the current/previous data
+const currentFile = fs.readFileSync(`${__dirname}/../data/current.json`);
+const current = JSON.parse(currentFile.toString()) as BankData;
+
+const currentBLZs = Object.keys(current);
+const nextBLZs = Object.keys(dataBank);
+
+// Check which BLZ have been added and which removed
+const upsertData: BankData = {};
+const removedData: string[] = [];
+for (const blz of currentBLZs) {
+  const numbericBLZ = Number(blz);
+  const nextBankData = dataBank[numbericBLZ];
+
+  if (typeof nextBankData === "undefined") {
+    removedData.push(blz);
+  }
+}
+
+for (const blz of nextBLZs) {
+  const numbericBLZ = Number(blz);
+  const currentBankData = current[numbericBLZ];
+  const nextBankData = dataBank[numbericBLZ];
+
+  if (
+    typeof currentBankData === "undefined" ||
+    currentBankData[0] !== nextBankData[0] ||
+    currentBankData[1] !== nextBankData[1]
+  ) {
+    upsertData[numbericBLZ] = nextBankData;
+  }
+}
+
+// Write the diff data to next.json
+fs.writeFileSync(
+  `${__dirname}/../data/next.json`,
+  JSON.stringify({
+    remove: removedData,
+    upsert: upsertData,
+    valid: process.argv[2],
+  })
+);

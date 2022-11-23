@@ -17,18 +17,74 @@
  */
 
 import currentBank from "../../data/current.json";
+import nextBank from "../../data/next.json";
 import {
   bankDataByBBAN,
   bankDataByBLZ,
   bankDataByIBAN,
+  bankDataSet,
   Banks,
+  combineCurrentNext,
+  dateObject,
   isBICInData,
+  NextBanks,
 } from "../../lib/data";
+
+const nextValidDate = new Date((nextBank as NextBanks).valid);
 
 describe("current.json", () => {
   // Safeguard that there are enough converted entries.
   it("contains more than 3000 entries", () => {
     expect(Object.keys(currentBank as Banks).length).toBeGreaterThan(3500);
+  });
+});
+
+describe("dateObject", () => {
+  it("returns same date object as provided", () => {
+    const testDate = new Date();
+    expect(dateObject(testDate)).toBe(testDate);
+  });
+  it("creates correct date object from string", () => {
+    expect(dateObject("2022-03-04T05:06:07+0800")).toEqual(
+      new Date("2022-03-04T05:06:07+0800")
+    );
+  });
+  it("creates current date object for undefined param", () => {
+    expect(dateObject()).toEqual(new Date());
+  });
+});
+
+describe("combineCurrentNext", () => {
+  const exampleCurrent: Banks = {
+    "11111111": ["a", "b"],
+    "22222222": ["c", "d"],
+    "33333333": ["e"],
+    "44444444": ["g"],
+  };
+  const exampleNextUpsert: Banks = {
+    "33333333": ["e", "f"],
+    "55555555": ["i", "j"],
+  };
+  const exampleNextRemove: string[] = ["11111111"];
+
+  it("correctly builds combined data", () => {
+    expect(
+      combineCurrentNext(exampleCurrent, exampleNextUpsert, exampleNextRemove)
+    ).toEqual({
+      "22222222": ["c", "d"],
+      "33333333": ["e", "f"],
+      "44444444": ["g"],
+      "55555555": ["i", "j"],
+    });
+  });
+});
+
+describe("bankDataSet", () => {
+  it("returns current if valid-from date isn't reached", () => {
+    expect(bankDataSet(new Date(0))).toEqual(currentBank);
+  });
+  it("returns modified data if valid date is reached", () => {
+    expect(bankDataSet(nextValidDate)).not.toEqual(currentBank);
   });
 });
 
@@ -121,5 +177,42 @@ describe("bankDataByIBAN", () => {
   });
   it("returns null for IBAN with unknown BLZ", () => {
     expect(bankDataByIBAN("DE00000000000000000000")).toEqual(null);
+  });
+});
+
+describe("Change 2022-12-05", () => {
+  test("BLZ 50040016 is unknown before valid-from date", () => {
+    expect(bankDataByBLZ("50040016", new Date(0))).toEqual(null);
+  });
+  test("BLZ 50040016 has data at valid-from date", () => {
+    expect(bankDataByBLZ("50040016", new Date(nextValidDate))).toEqual({
+      bankName: "Commerzbank (CLB New York) FFM",
+      bic: "COBADEFFNYC",
+      blz: "50040016",
+    });
+  });
+  test("BLZ 70051003 has old before valid-from date", () => {
+    expect(bankDataByBLZ("70051003", new Date(0))).toEqual({
+      bankName: "Sparkasse Freising",
+      bic: "BYLADEM1FSI",
+      blz: "70051003",
+    });
+  });
+  test("BLZ 70051003 has new data at valid-from date", () => {
+    expect(bankDataByBLZ("70051003", new Date(nextValidDate))).toEqual({
+      bankName: "Sparkasse Freising Moosburg",
+      bic: "BYLADEM1FSI",
+      blz: "70051003",
+    });
+  });
+  test("BLZ 50210212 has data before valid-from date", () => {
+    expect(bankDataByBLZ("50210212", new Date(0))).toEqual({
+      bankName: "RaboDirect",
+      bic: "RABODEFFDIR",
+      blz: "50210212",
+    });
+  });
+  test("BLZ 50210212 is unknown at valid-from date", () => {
+    expect(bankDataByBLZ("50210212", new Date(nextValidDate))).toEqual(null);
   });
 });
