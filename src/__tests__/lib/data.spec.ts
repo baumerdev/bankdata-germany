@@ -50,7 +50,7 @@ describe("dateObject", () => {
     );
   });
   it("creates current date object for undefined param", () => {
-    expect(dateObject()).toEqual(new Date());
+    expect(dateObject().toUTCString()).toEqual(new Date().toUTCString());
   });
 });
 
@@ -88,26 +88,57 @@ describe("bankDataSet", () => {
   });
 });
 
-describe("bankDataByBLZ", () => {
+describe("bankDataByBLZ without next", () => {
   Object.keys(currentBank as Banks).forEach((blz) => {
     const blzData = (currentBank as Banks)[blz];
     const blzObject = { bankName: blzData[0], bic: blzData[1], blz };
     it(`returns correct data for BLZ ${blz}`, () => {
-      expect(bankDataByBLZ(String(blz))).toEqual(blzObject);
+      expect(bankDataByBLZ(String(blz), new Date(0))).toEqual(blzObject);
     });
   });
 
   it("returns null for unknown BLZ 12345678", () => {
-    expect(bankDataByBLZ("12345678")).toEqual(null);
+    expect(bankDataByBLZ("12345678", new Date(0))).toEqual(null);
   });
   it("returns null for unknown BLZ 00000000", () => {
-    expect(bankDataByBLZ("00000000")).toEqual(null);
+    expect(bankDataByBLZ("00000000", new Date(0))).toEqual(null);
   });
   it("returns null for BLZ 1234567 (not 8 digits)", () => {
-    expect(bankDataByBLZ("1234567")).toEqual(null);
+    expect(bankDataByBLZ("1234567", new Date(0))).toEqual(null);
   });
   it("returns null for BLZ 123_5678 (invalid char)", () => {
-    expect(bankDataByBLZ("123_5678")).toEqual(null);
+    expect(bankDataByBLZ("123_5678", new Date(0))).toEqual(null);
+  });
+});
+
+describe("bankDataByBLZ with next", () => {
+  const combinedCheckDigits = combineCurrentNext(
+    currentBank,
+    (nextBank as NextBanks).upsert,
+    (nextBank as NextBanks).remove
+  );
+
+  Object.keys(combinedCheckDigits).forEach((blz) => {
+    const blzData = combinedCheckDigits[blz];
+    const blzObject = { bankName: blzData[0], bic: blzData[1], blz };
+    it(`returns correct data for BLZ ${blz}`, () => {
+      expect(bankDataByBLZ(String(blz), new Date(nextValidDate))).toEqual(
+        blzObject
+      );
+    });
+  });
+
+  it("returns null for unknown BLZ 12345678", () => {
+    expect(bankDataByBLZ("12345678", new Date(nextValidDate))).toEqual(null);
+  });
+  it("returns null for unknown BLZ 00000000", () => {
+    expect(bankDataByBLZ("00000000", new Date(nextValidDate))).toEqual(null);
+  });
+  it("returns null for BLZ 1234567 (not 8 digits)", () => {
+    expect(bankDataByBLZ("1234567", new Date(nextValidDate))).toEqual(null);
+  });
+  it("returns null for BLZ 123_5678 (invalid char)", () => {
+    expect(bankDataByBLZ("123_5678", new Date(nextValidDate))).toEqual(null);
   });
 });
 
