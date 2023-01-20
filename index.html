@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>bankdata-germany - v1.2201.0</title><meta name="description" content="Documentation for bankdata-germany - v1.2201.0"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>bankdata-germany - v1.2201.1</title><meta name="description" content="Documentation for bankdata-germany - v1.2201.1"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
 <div class="tsd-toolbar-contents container">
 <div class="table-cell" id="tsd-search" data-base=".">
 <div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
@@ -6,12 +6,12 @@
 <div id="tsd-toolbar-links"></div></div>
 <ul class="results">
 <li class="state loading">Preparing search index...</li>
-<li class="state failure">The search index is not available</li></ul><a href="https://github.com/baumerdev/bankdata-germany" class="title">bankdata-germany - v1.2201.0</a></div>
+<li class="state failure">The search index is not available</li></ul><a href="https://github.com/baumerdev/bankdata-germany" class="title">bankdata-germany - v1.2201.1</a></div>
 <div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
 <div class="container container-main">
 <div class="col-8 col-content">
 <div class="tsd-page-title">
-<h2>bankdata-germany - v1.2201.0</h2></div>
+<h2>bankdata-germany - v1.2201.1</h2></div>
 <div class="tsd-panel tsd-typography">
 <a href="#bankdata-germany-data-and-bic-validator-for-german-banks" id="bankdata-germany-data-and-bic-validator-for-german-banks" style="color: inherit; text-decoration: none;">
   <h1>BankData-Germany: Data and BIC Validator for German Banks.</h1>
@@ -42,7 +42,7 @@ take a look at the main project <a href="https://baumerdev.github.io/ibantools-g
 <p>Add it to your project with your package manager like npm or yarn. You should
 explicitly install the latest version since the bank data may change multiple
 times a year.</p>
-<pre><code class="language-sh"><span class="hl-0">$ npm install --save bankdata-germany@latest</span><br/><span class="hl-1"># or</span><br/><span class="hl-0">$ yarn add bankdata-germany@latest</span>
+<pre><code class="language-sh"><span class="hl-0">$ </span><span class="hl-1">npm</span><span class="hl-0"> </span><span class="hl-1">install</span><span class="hl-0"> </span><span class="hl-1">--save</span><span class="hl-0"> </span><span class="hl-1">bankdata-germany@latest</span><br/><span class="hl-2"># or</span><br/><span class="hl-0">$ </span><span class="hl-1">yarn</span><span class="hl-0"> </span><span class="hl-1">add</span><span class="hl-0"> </span><span class="hl-1">bankdata-germany@latest</span>
 </code></pre>
 
 <a href="#browser--cdn" id="browser--cdn" style="color: inherit; text-decoration: none;">
@@ -50,7 +50,7 @@ times a year.</p>
 </a>
 <p>If you just want the functions in your browser, you can include the following
 pre-build file.</p>
-<pre><code class="language-html"><span class="hl-2">&lt;</span><span class="hl-3">script</span><span class="hl-4"> </span><span class="hl-5">src</span><span class="hl-4">=</span><span class="hl-6">&quot;https://cdn.jsdelivr.net/npm/bankdata-germany/dist/build/browser.js&quot;</span><span class="hl-2">&gt;&lt;/</span><span class="hl-3">script</span><span class="hl-2">&gt;</span>
+<pre><code class="language-html"><span class="hl-3">&lt;</span><span class="hl-4">script</span><span class="hl-5"> </span><span class="hl-6">src</span><span class="hl-5">=</span><span class="hl-7">&quot;https://cdn.jsdelivr.net/npm/bankdata-germany/dist/build/browser.js&quot;</span><span class="hl-3">&gt;&lt;/</span><span class="hl-4">script</span><span class="hl-3">&gt;</span>
 </code></pre>
 
 <a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
@@ -65,7 +65,7 @@ shown in the usage examples below, you can use <code>require</code> as well.</p>
 <p>You can get detailed information for a bank by BLZ, BBAN or IBAN.</p>
 <p>Note: If you use the BBAN/IBAN function no verification takes place. It just
 extracts the BLZ and checks if it exists.</p>
-<pre><code class="language-javascript"><span class="hl-7">import</span><span class="hl-0"> { </span><span class="hl-8">bankDataByBLZ</span><span class="hl-0">, </span><span class="hl-8">bankDataByBBAN</span><span class="hl-0">, </span><span class="hl-8">bankDataByIBAN</span><span class="hl-0"> } </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-9">&quot;bankdata-germany&quot;</span><br/><br/><span class="hl-10">bankDataByBLZ</span><span class="hl-0">(</span><span class="hl-9">&quot;10010010&quot;</span><span class="hl-0">);</span><br/><span class="hl-10">bankDataByBBAN</span><span class="hl-0">(</span><span class="hl-9">&quot;100100100000138301&quot;</span><span class="hl-0">);</span><br/><span class="hl-10">bankDataByIBAN</span><span class="hl-0">(</span><span class="hl-9">&quot;DE48100100100000138301&quot;</span><span class="hl-0">);</span><br/><span class="hl-1">// {</span><br/><span class="hl-1">//   bankName: &quot;Postbank Ndl der Deutsche Bank&quot;,</span><br/><span class="hl-1">//   bic: &quot;PBNKDEFFXXX&quot;,</span><br/><span class="hl-1">//   blz: &quot;10010010&quot;</span><br/><span class="hl-1">// }</span>
+<pre><code class="language-javascript"><span class="hl-8">import</span><span class="hl-0"> { </span><span class="hl-9">bankDataByBLZ</span><span class="hl-0">, </span><span class="hl-9">bankDataByBBAN</span><span class="hl-0">, </span><span class="hl-9">bankDataByIBAN</span><span class="hl-0"> } </span><span class="hl-8">from</span><span class="hl-0"> </span><span class="hl-1">&quot;bankdata-germany&quot;</span><br/><br/><span class="hl-10">bankDataByBLZ</span><span class="hl-0">(</span><span class="hl-1">&quot;10010010&quot;</span><span class="hl-0">);</span><br/><span class="hl-10">bankDataByBBAN</span><span class="hl-0">(</span><span class="hl-1">&quot;100100100000138301&quot;</span><span class="hl-0">);</span><br/><span class="hl-10">bankDataByIBAN</span><span class="hl-0">(</span><span class="hl-1">&quot;DE48100100100000138301&quot;</span><span class="hl-0">);</span><br/><span class="hl-2">// {</span><br/><span class="hl-2">//   bankName: &quot;Postbank Ndl der Deutsche Bank&quot;,</span><br/><span class="hl-2">//   bic: &quot;PBNKDEFFXXX&quot;,</span><br/><span class="hl-2">//   blz: &quot;10010010&quot;</span><br/><span class="hl-2">// }</span>
 </code></pre>
 
 <a href="#validation" id="validation" style="color: inherit; text-decoration: none;">
@@ -74,7 +74,7 @@ extracts the BLZ and checks if it exists.</p>
 <p>You can validate BIC/Swift Codes. But even if those formats are international
 standards this library only validates data for Germany and will return false
 for all other countries.</p>
-<pre><code class="language-javascript"><span class="hl-7">import</span><span class="hl-0"> { </span><span class="hl-8">isValidBIC</span><span class="hl-0"> } </span><span class="hl-7">from</span><span class="hl-0"> </span><span class="hl-9">&quot;bankdata-germany&quot;</span><br/><br/><span class="hl-10">isValidBIC</span><span class="hl-0">(</span><span class="hl-9">&quot;MARKDEFF&quot;</span><span class="hl-0">); </span><span class="hl-1">// true</span><br/><span class="hl-10">isValidBIC</span><span class="hl-0">(</span><span class="hl-9">&quot;MARKDEFFXXX&quot;</span><span class="hl-0">); </span><span class="hl-1">// true</span><br/><span class="hl-10">isValidBIC</span><span class="hl-0">(</span><span class="hl-9">&quot;foobar&quot;</span><span class="hl-0">); </span><span class="hl-1">// false (invalid format)</span><br/><span class="hl-10">isValidBIC</span><span class="hl-0">(</span><span class="hl-9">&quot;BNPAFRPH&quot;</span><span class="hl-0">); </span><span class="hl-1">// false (corrent but not a German BIC)</span>
+<pre><code class="language-javascript"><span class="hl-8">import</span><span class="hl-0"> { </span><span class="hl-9">isValidBIC</span><span class="hl-0"> } </span><span class="hl-8">from</span><span class="hl-0"> </span><span class="hl-1">&quot;bankdata-germany&quot;</span><br/><br/><span class="hl-10">isValidBIC</span><span class="hl-0">(</span><span class="hl-1">&quot;MARKDEFF&quot;</span><span class="hl-0">); </span><span class="hl-2">// true</span><br/><span class="hl-10">isValidBIC</span><span class="hl-0">(</span><span class="hl-1">&quot;MARKDEFFXXX&quot;</span><span class="hl-0">); </span><span class="hl-2">// true</span><br/><span class="hl-10">isValidBIC</span><span class="hl-0">(</span><span class="hl-1">&quot;foobar&quot;</span><span class="hl-0">); </span><span class="hl-2">// false (invalid format)</span><br/><span class="hl-10">isValidBIC</span><span class="hl-0">(</span><span class="hl-1">&quot;BNPAFRPH&quot;</span><span class="hl-0">); </span><span class="hl-2">// false (corrent but not a German BIC)</span>
 </code></pre>
 
 <a href="#browser--cdn-1" id="browser--cdn-1" style="color: inherit; text-decoration: none;">
@@ -82,7 +82,7 @@ for all other countries.</p>
 </a>
 <p>If you use the pre-build version, an object <code>bankdataGermany</code> is globally
 defined on <code>window</code> containing the functions.</p>
-<pre><code class="language-javascript"><span class="hl-8">bankdataGermany</span><span class="hl-0">.</span><span class="hl-10">bankDataByBLZ</span><span class="hl-0">(</span><span class="hl-9">&quot;10010010&quot;</span><span class="hl-0">);</span><br/><span class="hl-8">bankdataGermany</span><span class="hl-0">.</span><span class="hl-10">bankDataByBBAN</span><span class="hl-0">(</span><span class="hl-9">&quot;100100100000138301&quot;</span><span class="hl-0">);</span><br/><span class="hl-8">bankdataGermany</span><span class="hl-0">.</span><span class="hl-10">bankDataByIBAN</span><span class="hl-0">(</span><span class="hl-9">&quot;DE48100100100000138301&quot;</span><span class="hl-0">);</span><br/><span class="hl-8">bankdataGermany</span><span class="hl-0">.</span><span class="hl-10">isValidBIC</span><span class="hl-0">(</span><span class="hl-9">&quot;MARKDEFF&quot;</span><span class="hl-0">);</span>
+<pre><code class="language-javascript"><span class="hl-9">bankdataGermany</span><span class="hl-0">.</span><span class="hl-10">bankDataByBLZ</span><span class="hl-0">(</span><span class="hl-1">&quot;10010010&quot;</span><span class="hl-0">);</span><br/><span class="hl-9">bankdataGermany</span><span class="hl-0">.</span><span class="hl-10">bankDataByBBAN</span><span class="hl-0">(</span><span class="hl-1">&quot;100100100000138301&quot;</span><span class="hl-0">);</span><br/><span class="hl-9">bankdataGermany</span><span class="hl-0">.</span><span class="hl-10">bankDataByIBAN</span><span class="hl-0">(</span><span class="hl-1">&quot;DE48100100100000138301&quot;</span><span class="hl-0">);</span><br/><span class="hl-9">bankdataGermany</span><span class="hl-0">.</span><span class="hl-10">isValidBIC</span><span class="hl-0">(</span><span class="hl-1">&quot;MARKDEFF&quot;</span><span class="hl-0">);</span>
 </code></pre>
 
 <a href="#data-source" id="data-source" style="color: inherit; text-decoration: none;">
@@ -136,7 +136,7 @@ when the first number changes, you should be good with e.g. <code>&quot;1.x&quot
 <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Modules</h3></summary>
 <div class="tsd-accordion-details">
 <ul>
-<li class="current selected"><a href="modules.html">bankdata-<wbr/>germany -<wbr/> v1.2201.0</a>
+<li class="current selected"><a href="modules.html">bankdata-<wbr/>germany -<wbr/> v1.2201.1</a>
 <ul></ul></li></ul></div></details></nav>
 <nav class="tsd-navigation secondary menu-sticky">
 <ul>
