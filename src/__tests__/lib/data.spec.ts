@@ -211,39 +211,39 @@ describe("bankDataByIBAN", () => {
   });
 });
 
-describe("Change 2022-12-05", () => {
-  test("BLZ 50040016 is unknown before valid-from date", () => {
-    expect(bankDataByBLZ("50040016", new Date(0))).toEqual(null);
+describe("Change 2023-03-06", () => {
+  test("BLZ 10010200 is unknown before valid-from date", () => {
+    expect(bankDataByBLZ("10010200", new Date(0))).toEqual(null);
   });
-  test("BLZ 50040016 has data at valid-from date", () => {
-    expect(bankDataByBLZ("50040016", new Date(nextValidDate))).toEqual({
-      bankName: "Commerzbank (CLB New York) FFM",
-      bic: "COBADEFFNYC",
-      blz: "50040016",
+  test("BLZ 10010200 has data at valid-from date", () => {
+    expect(bankDataByBLZ("10010200", new Date(nextValidDate))).toEqual({
+      bankName: "Treezor, Berlin",
+      bic: "TRZODEB2XXX",
+      blz: "10010200",
     });
   });
-  test("BLZ 70051003 has old before valid-from date", () => {
-    expect(bankDataByBLZ("70051003", new Date(0))).toEqual({
-      bankName: "Sparkasse Freising",
-      bic: "BYLADEM1FSI",
-      blz: "70051003",
+  test("BLZ 20230800 has old before valid-from date", () => {
+    expect(bankDataByBLZ("20230800", new Date(0))).toEqual({
+      bankName: "Max Heinr. Sutor",
+      bic: "MHSBDEHBXXX",
+      blz: "20230800",
     });
   });
-  test("BLZ 70051003 has new data at valid-from date", () => {
-    expect(bankDataByBLZ("70051003", new Date(nextValidDate))).toEqual({
-      bankName: "Sparkasse Freising Moosburg",
-      bic: "BYLADEM1FSI",
-      blz: "70051003",
+  test("BLZ 20230800 has new data at valid-from date", () => {
+    expect(bankDataByBLZ("20230800", new Date(nextValidDate))).toEqual({
+      bankName: "Sutor Bank",
+      bic: "MHSBDEHBXXX",
+      blz: "20230800",
     });
   });
-  test("BLZ 50210212 has data before valid-from date", () => {
-    expect(bankDataByBLZ("50210212", new Date(0))).toEqual({
-      bankName: "RaboDirect",
-      bic: "RABODEFFDIR",
-      blz: "50210212",
+  test("BLZ 25851335 has data before valid-from date", () => {
+    expect(bankDataByBLZ("25851335", new Date(0))).toEqual({
+      bankName: "Sparkasse Uelzen Lüchow-Dannenberg -alt-",
+      bic: "NOLADE21DAN",
+      blz: "25851335",
     });
   });
-  test("BLZ 50210212 is unknown at valid-from date", () => {
-    expect(bankDataByBLZ("50210212", new Date(nextValidDate))).toEqual(null);
+  test("BLZ 25851335 is unknown at valid-from date", () => {
+    expect(bankDataByBLZ("25851335", new Date(nextValidDate))).toEqual(null);
   });
 });
