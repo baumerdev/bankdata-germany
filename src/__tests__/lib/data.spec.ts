@@ -211,39 +211,39 @@ describe("bankDataByIBAN", () => {
   });
 });
 
-describe("Change 2023-03-06", () => {
-  test("BLZ 10010200 is unknown before valid-from date", () => {
-    expect(bankDataByBLZ("10010200", new Date(0))).toEqual(null);
+describe("Change 2023-06-05", () => {
+  test("BLZ 50026600 is unknown before valid-from date", () => {
+    expect(bankDataByBLZ("50026600", new Date(0))).toEqual(null);
   });
-  test("BLZ 10010200 has data at valid-from date", () => {
-    expect(bankDataByBLZ("10010200", new Date(nextValidDate))).toEqual({
-      bankName: "Treezor, Berlin",
-      bic: "TRZODEB2XXX",
-      blz: "10010200",
+  test("BLZ 50026600 has data at valid-from date", () => {
+    expect(bankDataByBLZ("50026600", new Date(nextValidDate))).toEqual({
+      bankName: "UNLIMINT EU Zweigniederlassung Deutschland",
+      bic: "CARDDEFFXXX",
+      blz: "50026600",
     });
   });
-  test("BLZ 20230800 has old before valid-from date", () => {
-    expect(bankDataByBLZ("20230800", new Date(0))).toEqual({
-      bankName: "Max Heinr. Sutor",
-      bic: "MHSBDEHBXXX",
-      blz: "20230800",
+  test("BLZ 24161594 has data before valid-from date", () => {
+    expect(bankDataByBLZ("24161594", new Date(0))).toEqual({
+      bankName: "Zevener Volksbank",
+      bic: "GENODEF1SIT",
+      blz: "24161594",
     });
   });
-  test("BLZ 20230800 has new data at valid-from date", () => {
-    expect(bankDataByBLZ("20230800", new Date(nextValidDate))).toEqual({
-      bankName: "Sutor Bank",
-      bic: "MHSBDEHBXXX",
-      blz: "20230800",
+  test("BLZ 24161594 has new data at valid-from date", () => {
+    expect(bankDataByBLZ("24161594", new Date(nextValidDate))).toEqual({
+      bankName: "Zevener Volksbank -alt-",
+      bic: "GENODEF1SIT",
+      blz: "24161594",
     });
   });
-  test("BLZ 25851335 has data before valid-from date", () => {
-    expect(bankDataByBLZ("25851335", new Date(0))).toEqual({
-      bankName: "Sparkasse Uelzen Lüchow-Dannenberg -alt-",
-      bic: "NOLADE21DAN",
-      blz: "25851335",
+  test("BLZ 20090500 has data before valid-from date", () => {
+    expect(bankDataByBLZ("20090500", new Date(0))).toEqual({
+      bankName: "Augsburger Aktienbank (netbank)",
+      bic: "AUGBDE71NET",
+      blz: "20090500",
     });
   });
-  test("BLZ 25851335 is unknown at valid-from date", () => {
-    expect(bankDataByBLZ("25851335", new Date(nextValidDate))).toEqual(null);
+  test("BLZ 20090500 is unknown at valid-from date", () => {
+    expect(bankDataByBLZ("20090500", new Date(nextValidDate))).toEqual(null);
   });
 });
