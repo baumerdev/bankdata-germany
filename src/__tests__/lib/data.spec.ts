@@ -211,39 +211,39 @@ describe("bankDataByIBAN", () => {
   });
 });
 
-describe("Change 2023-09-04", () => {
-  test("BLZ 10010178 is unknown before valid-from date", () => {
-    expect(bankDataByBLZ("10010178", new Date(0))).toEqual(null);
+describe("Change 2023-12-04", () => {
+  test("BLZ 10018000 is unknown before valid-from date", () => {
+    expect(bankDataByBLZ("10018000", new Date(0))).toEqual(null);
   });
-  test("BLZ 10010178 has data at valid-from date", () => {
-    expect(bankDataByBLZ("10010178", new Date(nextValidDate))).toEqual({
-      bankName: "Revolut Bank, Zweigniederlassung Deutschland",
-      bic: "REVODEB2XXX",
-      blz: "10010178",
+  test("BLZ 10018000 has data at valid-from date", () => {
+    expect(bankDataByBLZ("10018000", new Date(nextValidDate))).toEqual({
+      bankName: "Finom Payments Zweigniederlassung Deutschland",
+      bic: "FNOMDEB2XXX",
+      blz: "10018000",
     });
   });
-  test("BLZ 26991066 has data before valid-from date", () => {
-    expect(bankDataByBLZ("26991066", new Date(0))).toEqual({
-      bankName: "Volksbank Braunschweig Wolfsburg",
-      bic: "GENODEF1WOB",
-      blz: "26991066",
+  test("BLZ 13091054 has data before valid-from date", () => {
+    expect(bankDataByBLZ("13091054", new Date(0))).toEqual({
+      bankName: "Pommersche Volksbank",
+      bic: "GENODEF1HST",
+      blz: "13091054",
     });
   });
-  test("BLZ 26991066 has new data at valid-from date", () => {
-    expect(bankDataByBLZ("26991066", new Date(nextValidDate))).toEqual({
-      bankName: "Volksbank BRAWO",
-      bic: "GENODEF1WOB",
-      blz: "26991066",
+  test("BLZ 13091054 has new data at valid-from date", () => {
+    expect(bankDataByBLZ("13091054", new Date(nextValidDate))).toEqual({
+      bankName: "Volksbank Vorpommern",
+      bic: "GENODEF1HST",
+      blz: "13091054",
     });
   });
-  test("BLZ 10050005 has data before valid-from date", () => {
-    expect(bankDataByBLZ("10050005", new Date(0))).toEqual({
-      bankName: "Landesbank Berlin - E 1 -",
-      bic: undefined,
-      blz: "10050005",
+  test("BLZ 20220400 has data before valid-from date", () => {
+    expect(bankDataByBLZ("20220400", new Date(0))).toEqual({
+      bankName: "Warburg, M.M. - Hypothekenbank",
+      bic: "MMWHDEH1XXX",
+      blz: "20220400",
     });
   });
-  test("BLZ 10050005 is unknown at valid-from date", () => {
-    expect(bankDataByBLZ("10050005", new Date(nextValidDate))).toEqual(null);
+  test("BLZ 20220400 is unknown at valid-from date", () => {
+    expect(bankDataByBLZ("20220400", new Date(nextValidDate))).toEqual(null);
   });
 });

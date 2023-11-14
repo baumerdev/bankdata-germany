@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-11-14 [v1.2303.0]
+
+* Additionally includes data valid from 2023-12-04, removes data valid before 2023-09-04
+
 ## 2023-08-23 [v1.2302.0]
 
 * Additionally includes data valid from 2023-09-04, removes data valid before 2023-06-05
