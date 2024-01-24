@@ -150,6 +150,38 @@ export const bankDataByIBAN = (
 };
 
 /**
+ * Get bank data for bank with given BIC
+ *
+ * @param bic BIC to search for
+ * @param date Bank data valid at this date (default: current date)
+ * @returns Bank data or null
+ */
+export const bankDataByBIC = (
+  bic: ProbablyString,
+  date?: string | Date
+): BankData | null => {
+  if (!bic || !bic.match(/^[A-Z]{4}DE[A-Z0-9]{2}([A-Z0-9]{3})?$/i)) {
+    return null;
+  }
+
+  const searchBIC = `${bic.toUpperCase()}${bic.length === 8 ? "XXX" : ""}`;
+
+  const result = Object.entries(bankDataSet(date)).find(
+    ([, bank]) => bank[1] && bank[1] === searchBIC
+  );
+
+  if (!result) {
+    return null;
+  }
+
+  return {
+    bankName: result[1][0],
+    bic: result[1][1],
+    blz: result[0],
+  };
+};
+
+/**
  * Search all bank data and check if any contains the BIC
  *
  * @param bic BIC to search for
@@ -157,15 +189,5 @@ export const bankDataByIBAN = (
  * @returns Whether BIC exists in bank data
  */
 export const isBICInData = (bic: string, date?: string | Date): boolean => {
-  if (!bic.match(/^[A-Z]{4}DE[A-Z0-9]{2}([A-Z0-9]{3})?$/i)) {
-    return false;
-  }
-
-  const searchBIC = `${bic.toUpperCase()}${bic.length === 8 ? "XXX" : ""}`;
-
-  return (
-    typeof Object.values(bankDataSet(date)).find(
-      (bank) => bank[1] && bank[1] === searchBIC
-    ) !== "undefined"
-  );
+  return bankDataByBIC(bic, date) != null;
 };
