@@ -55,9 +55,10 @@ Note: When using the BBAN/IBAN function, no verification will be performed. It
 solely extracts the BLZ and verifies its existence.
 
 ```javascript
-import { bankDataByBLZ, bankDataByBBAN, bankDataByIBAN } from "bankdata-germany"
+import { bankDataByBLZ, bankDataByBIC, bankDataByBBAN, bankDataByIBAN } from "bankdata-germany"
 
 bankDataByBLZ("10010010");
+bankDataByBIC("MARKDEFF");
 bankDataByBBAN("100100100000138301");
 bankDataByIBAN("DE48100100100000138301");
 // {
@@ -89,6 +90,7 @@ defined on the `window`, containing the functions.
 
 ```javascript
 bankdataGermany.bankDataByBLZ("10010010");
+bankdataGermany.bankDataByBIC("MARKDEFF");
 bankdataGermany.bankDataByBBAN("100100100000138301");
 bankdataGermany.bankDataByIBAN("DE48100100100000138301");
 bankdataGermany.isValidBIC("MARKDEFF");

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2024-01-30 [v1.2303.1]
+
+* Update package.json exports for TypeScript >4.7 ; [#1](https://github.com/baumerdev/bankdata-germany/pull/1)
+* Add method for retrieving data by BIC ; [#2](https://github.com/baumerdev/bankdata-germany/pull/2)
+
 ## 2023-11-14 [v1.2303.0]
 
 * Additionally includes data valid from 2023-12-04, removes data valid before 2023-09-04
