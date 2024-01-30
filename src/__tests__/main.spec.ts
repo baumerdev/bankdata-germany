@@ -23,6 +23,9 @@ describe("main", () => {
   it("exports function named bankDataByBBAN", () => {
     expect(typeof main.bankDataByBBAN).toBe("function");
   });
+  it("exports function named bankDataByBIC", () => {
+    expect(typeof main.bankDataByBIC).toBe("function");
+  });
   it("exports function named bankDataByBLZ", () => {
     expect(typeof main.bankDataByBLZ).toBe("function");
   });
