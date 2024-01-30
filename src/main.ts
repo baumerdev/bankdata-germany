@@ -16,13 +16,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { bankDataByBBAN, bankDataByBLZ, bankDataByIBAN } from "./lib/data";
+import {
+  bankDataByBBAN,
+  bankDataByBIC,
+  bankDataByBLZ,
+  bankDataByIBAN,
+} from "./lib/data";
 import { BankData, ProbablyString } from "./lib/types";
 import { isValidBIC } from "./lib/validate";
 
 export {
   BankData,
   bankDataByBBAN,
+  bankDataByBIC,
   bankDataByBLZ,
   bankDataByIBAN,
   isValidBIC,

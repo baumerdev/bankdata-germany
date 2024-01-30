@@ -20,6 +20,7 @@ import currentBank from "../../data/current.json";
 import nextBank from "../../data/next.json";
 import {
   bankDataByBBAN,
+  bankDataByBIC,
   bankDataByBLZ,
   bankDataByIBAN,
   bankDataSet,
@@ -158,6 +159,25 @@ describe("isBICInData", () => {
   });
   it("returns false for unknown BIC AAAADE00000", () => {
     expect(isBICInData("AAAADE00000")).toEqual(false);
+  });
+});
+
+describe("bankDataByBIC", () => {
+  it("returns data for BIC", () => {
+    expect(bankDataByBIC("MARKDEF1100")).toEqual({
+      bankName: "Bundesbank",
+      bic: "MARKDEF1100",
+      blz: "10000000",
+    });
+  });
+  it("returns null for BIC null (not a string)", () => {
+    expect(bankDataByBIC(null)).toEqual(null);
+  });
+  it("returns null for invalid BIC format", () => {
+    expect(bankDataByBIC("1")).toEqual(null);
+  });
+  it("returns null for unknown BIC AAAADE00000", () => {
+    expect(bankDataByBIC("AAAADE00000")).toEqual(null);
   });
 });
 
