@@ -1,5 +1,9 @@
 # Changelog
 
+## 2024-02-17 [v1.2400.0]
+
+* Additionally includes data valid from 2024-03-04, removes data valid before 2023-12-04
+
 ## 2024-01-30 [v1.2303.1]
 
 * Update package.json exports for TypeScript >4.7 ; [#1](https://github.com/baumerdev/bankdata-germany/pull/1)

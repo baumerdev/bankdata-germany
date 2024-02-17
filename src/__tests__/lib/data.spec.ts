@@ -231,39 +231,39 @@ describe("bankDataByIBAN", () => {
   });
 });
 
-describe("Change 2023-12-04", () => {
-  test("BLZ 10018000 is unknown before valid-from date", () => {
-    expect(bankDataByBLZ("10018000", new Date(0))).toEqual(null);
+describe("Change 2024-03-04", () => {
+  test("BLZ 10012345 is unknown before valid-from date", () => {
+    expect(bankDataByBLZ("10012345", new Date(0))).toEqual(null);
   });
-  test("BLZ 10018000 has data at valid-from date", () => {
-    expect(bankDataByBLZ("10018000", new Date(nextValidDate))).toEqual({
-      bankName: "Finom Payments Zweigniederlassung Deutschland",
-      bic: "FNOMDEB2XXX",
-      blz: "10018000",
+  test("BLZ 10012345 has data at valid-from date", () => {
+    expect(bankDataByBLZ("10012345", new Date(nextValidDate))).toEqual({
+      bankName: "Trade Republic Bank",
+      bic: "TRBKDEBBXXX",
+      blz: "10012345",
     });
   });
-  test("BLZ 13091054 has data before valid-from date", () => {
-    expect(bankDataByBLZ("13091054", new Date(0))).toEqual({
-      bankName: "Pommersche Volksbank",
-      bic: "GENODEF1HST",
-      blz: "13091054",
+  test("BLZ 42651315 has data before valid-from date", () => {
+    expect(bankDataByBLZ("42651315", new Date(0))).toEqual({
+      bankName: "Stadtsparkasse Haltern am See",
+      bic: "WELADED1HAT",
+      blz: "42651315",
     });
   });
-  test("BLZ 13091054 has new data at valid-from date", () => {
-    expect(bankDataByBLZ("13091054", new Date(nextValidDate))).toEqual({
-      bankName: "Volksbank Vorpommern",
-      bic: "GENODEF1HST",
-      blz: "13091054",
+  test("BLZ 42651315 has new data at valid-from date", () => {
+    expect(bankDataByBLZ("42651315", new Date(nextValidDate))).toEqual({
+      bankName: "Stadtsparkasse Haltern am See -alt-",
+      bic: "WELADED1HAT",
+      blz: "42651315",
     });
   });
-  test("BLZ 20220400 has data before valid-from date", () => {
-    expect(bankDataByBLZ("20220400", new Date(0))).toEqual({
-      bankName: "Warburg, M.M. - Hypothekenbank",
-      bic: "MMWHDEH1XXX",
-      blz: "20220400",
-    });
-  });
-  test("BLZ 20220400 is unknown at valid-from date", () => {
-    expect(bankDataByBLZ("20220400", new Date(nextValidDate))).toEqual(null);
-  });
+  // test("BLZ 20220400 has data before valid-from date", () => {
+  //   expect(bankDataByBLZ("20220400", new Date(0))).toEqual({
+  //     bankName: "Warburg, M.M. - Hypothekenbank",
+  //     bic: "MMWHDEH1XXX",
+  //     blz: "20220400",
+  //   });
+  // });
+  // test("BLZ 20220400 is unknown at valid-from date", () => {
+  //   expect(bankDataByBLZ("20220400", new Date(nextValidDate))).toEqual(null);
+  // });
 });

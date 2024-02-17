@@ -11,7 +11,7 @@ the bank name and BIC fields.
 This library is not an IBAN validator itself. If you require validation,
 please refer to the main project. [IBANTools-Germany](https://baumerdev.github.io/ibantools-germany/).
 
-> _Version 1.2303.* includes data from 2023-09-04 to 2023-12-03, as well as from 2023-12-04 to 2024-03-03. Validation will be based on the data that is valid according to your system time (data changes at midnight CET on 2023-12-04)._
+> _Version 1.2400.* includes data from 2023-12-04 to 2024-03-03, as well as from 2024-03-04 to 2024-06-02. Validation will be based on the data that is valid according to your system time (data changes at midnight CET on 2024-03-04)._
 
 * [Installation](#installation)
 * [Usage](#usage)
@@ -58,7 +58,7 @@ solely extracts the BLZ and verifies its existence.
 import { bankDataByBLZ, bankDataByBIC, bankDataByBBAN, bankDataByIBAN } from "bankdata-germany"
 
 bankDataByBLZ("10010010");
-bankDataByBIC("MARKDEFF");
+bankDataByBIC("PBNKDEFFXXX");
 bankDataByBBAN("100100100000138301");
 bankDataByIBAN("DE48100100100000138301");
 // {
@@ -90,7 +90,7 @@ defined on the `window`, containing the functions.
 
 ```javascript
 bankdataGermany.bankDataByBLZ("10010010");
-bankdataGermany.bankDataByBIC("MARKDEFF");
+bankdataGermany.bankDataByBIC("PBNKDEFFXXX");
 bankdataGermany.bankDataByBBAN("100100100000138301");
 bankdataGermany.bankDataByIBAN("DE48100100100000138301");
 bankdataGermany.isValidBIC("MARKDEFF");
