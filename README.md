@@ -11,7 +11,7 @@ the bank name and BIC fields.
 This library is not an IBAN validator itself. If you require validation,
 please refer to the main project. [IBANTools-Germany](https://baumerdev.github.io/ibantools-germany/).
 
-> _Version 1.2400.* includes data from 2023-12-04 to 2024-03-03, as well as from 2024-03-04 to 2024-06-02. Validation will be based on the data that is valid according to your system time (data changes at midnight CET on 2024-03-04)._
+> _Version 1.2401.* includes data from 2024-03-04 to 2024-06-02, as well as from 2024-06-03 to 2024-09-08. Validation will be based on the data that is valid according to your system time (data changes at midnight CET on 2024-06-03)._
 
 * [Installation](#installation)
 * [Usage](#usage)
