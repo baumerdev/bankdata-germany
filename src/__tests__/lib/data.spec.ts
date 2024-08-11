@@ -231,39 +231,39 @@ describe("bankDataByIBAN", () => {
   });
 });
 
-describe("Change 2024-06-03", () => {
-  test("BLZ 70110570 is unknown before valid-from date", () => {
-    expect(bankDataByBLZ("70110570", new Date(0))).toEqual(null);
-  });
-  test("BLZ 70110570 has data at valid-from date", () => {
-    expect(bankDataByBLZ("70110570", new Date(nextValidDate))).toEqual({
-      bankName: "Münchener Hypothekenbank",
-      bic: "MHYPDEMMSCA",
-      blz: "70110570",
+describe("Change 2024-09-09", () => {
+  // test("BLZ 70110570 is unknown before valid-from date", () => {
+  //   expect(bankDataByBLZ("70110570", new Date(0))).toEqual(null);
+  // });
+  // test("BLZ 70110570 has data at valid-from date", () => {
+  //   expect(bankDataByBLZ("70110570", new Date(nextValidDate))).toEqual({
+  //     bankName: "Münchener Hypothekenbank",
+  //     bic: "MHYPDEMMSCA",
+  //     blz: "70110570",
+  //   });
+  // });
+  test("BLZ 10050500 has data before valid-from date", () => {
+    expect(bankDataByBLZ("10050500", new Date(0))).toEqual({
+      bankName: "LBS Ost Berlin",
+      bic: "LBSODEB1BLN",
+      blz: "10050500",
     });
   });
-  test("BLZ 40055555 has data before valid-from date", () => {
-    expect(bankDataByBLZ("40055555", new Date(0))).toEqual({
-      bankName: "LBS Westdeutsche Landesbausparkasse",
-      bic: "LBSWDE31XXX",
-      blz: "40055555",
+  test("BLZ 10050500 has new data at valid-from date", () => {
+    expect(bankDataByBLZ("10050500", new Date(nextValidDate))).toEqual({
+      bankName: "LBS Landesbausparkasse NordOst",
+      bic: "LBSODEB1BLN",
+      blz: "10050500",
     });
   });
-  test("BLZ 40055555 has new data at valid-from date", () => {
-    expect(bankDataByBLZ("40055555", new Date(nextValidDate))).toEqual({
-      bankName: "LBS Landesbausparkasse Nord West",
-      bic: "LBSWDE31XXX",
-      blz: "40055555",
+  test("BLZ 21261089 has data before valid-from date", () => {
+    expect(bankDataByBLZ("21261089", new Date(0))).toEqual({
+      bankName: "Raiffeisenbank -alt-",
+      bic: "GENODEF1WAS",
+      blz: "21261089",
     });
   });
-  test("BLZ 10031000 has data before valid-from date", () => {
-    expect(bankDataByBLZ("10031000", new Date(0))).toEqual({
-      bankName: "EIS Einlagensicherungsbank",
-      bic: "EIEGDEB1XXX",
-      blz: "10031000",
-    });
-  });
-  test("BLZ 10031000 is unknown at valid-from date", () => {
-    expect(bankDataByBLZ("10031000", new Date(nextValidDate))).toEqual(null);
+  test("BLZ 21261089 is unknown at valid-from date", () => {
+    expect(bankDataByBLZ("21261089", new Date(nextValidDate))).toEqual(null);
   });
 });
