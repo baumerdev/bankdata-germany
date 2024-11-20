@@ -1,5 +1,12 @@
 # Changelog
 
+## 2024-11-20 [v1.2403.0]
+
+* Additionally includes data valid from 2024-12-09, removes data valid before 2024-09-09
+* Upgraded dependencies
+* Fixed package.json syntax
+* Added Node 22 to pipeline, dropped Node 16 pipeline
+
 ## 2024-08-11 [v1.2402.0]
 
 * Additionally includes data valid from 2024-09-09, removes data valid before 2024-06-03
