@@ -231,39 +231,39 @@ describe("bankDataByIBAN", () => {
   });
 });
 
-describe("Change 2024-09-09", () => {
-  // test("BLZ 70110570 is unknown before valid-from date", () => {
-  //   expect(bankDataByBLZ("70110570", new Date(0))).toEqual(null);
-  // });
-  // test("BLZ 70110570 has data at valid-from date", () => {
-  //   expect(bankDataByBLZ("70110570", new Date(nextValidDate))).toEqual({
-  //     bankName: "Münchener Hypothekenbank",
-  //     bic: "MHYPDEMMSCA",
-  //     blz: "70110570",
-  //   });
-  // });
-  test("BLZ 10050500 has data before valid-from date", () => {
-    expect(bankDataByBLZ("10050500", new Date(0))).toEqual({
-      bankName: "LBS Ost Berlin",
-      bic: "LBSODEB1BLN",
-      blz: "10050500",
+describe("Change 2024-12-09", () => {
+  test("BLZ 50228899 is unknown before valid-from date", () => {
+    expect(bankDataByBLZ("50228899", new Date(0))).toEqual(null);
+  });
+  test("BLZ 50228899 has data at valid-from date", () => {
+    expect(bankDataByBLZ("50228899", new Date(nextValidDate))).toEqual({
+      bankName: "FIB Frankfurt International Bank",
+      bic: "EFIBDEFFXXX",
+      blz: "50228899",
     });
   });
-  test("BLZ 10050500 has new data at valid-from date", () => {
-    expect(bankDataByBLZ("10050500", new Date(nextValidDate))).toEqual({
-      bankName: "LBS Landesbausparkasse NordOst",
-      bic: "LBSODEB1BLN",
-      blz: "10050500",
+  test("BLZ 10020500 has data before valid-from date", () => {
+    expect(bankDataByBLZ("10020500", new Date(0))).toEqual({
+      bankName: "Bank für Sozialwirtschaft",
+      bic: "BFSWDE33BER",
+      blz: "10020500",
     });
   });
-  test("BLZ 21261089 has data before valid-from date", () => {
-    expect(bankDataByBLZ("21261089", new Date(0))).toEqual({
-      bankName: "Raiffeisenbank -alt-",
-      bic: "GENODEF1WAS",
-      blz: "21261089",
+  test("BLZ 10020500 has new data at valid-from date", () => {
+    expect(bankDataByBLZ("10020500", new Date(nextValidDate))).toEqual({
+      bankName: "SozialBank",
+      bic: "BFSWDE33BER",
+      blz: "10020500",
     });
   });
-  test("BLZ 21261089 is unknown at valid-from date", () => {
-    expect(bankDataByBLZ("21261089", new Date(nextValidDate))).toEqual(null);
+  test("BLZ 10030600 has data before valid-from date", () => {
+    expect(bankDataByBLZ("10030600", new Date(0))).toEqual({
+      bankName: "North Channel Bank",
+      bic: "GENODEF1OGK",
+      blz: "10030600",
+    });
+  });
+  test("BLZ 10030600 is unknown at valid-from date", () => {
+    expect(bankDataByBLZ("10030600", new Date(nextValidDate))).toEqual(null);
   });
 });
