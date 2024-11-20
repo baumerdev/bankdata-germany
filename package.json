@@ -3,7 +3,10 @@
   "version": "1.2402.0",
   "description": "Data and BIC Validator for German Banks",
   "author": "Markus Baumer <markus@baumer.dev>",
-  "repository": "https://github.com/baumerdev/bankdata-germany",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baumerdev/bankdata-germany.git"
+  },
   "homepage": "https://baumerdev.github.io/bankdata-germany/",
   "license": "AGPL",
   "keywords": [
@@ -17,9 +20,7 @@
     "bankleitzahl",
     "blz"
   ],
-  "main": "./dist/cjs/main.js",
-  "module": "./dist/esm/main.js",
-  "types": "./dist/cjs/main.d.ts",
+  "type": "commonjs",
   "exports": {
     ".": {
       "require": {
@@ -27,8 +28,8 @@
         "default": "./dist/cjs/main.js"
       },
       "import": {
-        "types": "./dist/cjs/main.d.ts",
-        "default": "./dist/esm/main.js"
+        "types": "./dist/esm/main.d.mts",
+        "default": "./dist/esm/main.mjs"
       }
     }
   },

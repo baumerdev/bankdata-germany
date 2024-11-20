@@ -35,4 +35,9 @@ const esmWrapper = [
 if (!fs.existsSync(`${__dirname}/../../dist/esm`)) {
   fs.mkdirSync(`${__dirname}/../../dist/esm`, { recursive: true });
 }
-fs.writeFileSync(`${__dirname}/../../dist/esm/main.js`, esmWrapper);
+fs.writeFileSync(`${__dirname}/../../dist/esm/main.mjs`, esmWrapper);
+
+const dtsContent = fs
+  .readFileSync(`${__dirname}/../../dist/cjs/main.d.ts`, "utf8")
+  .replace(/\.\/lib/g, "../cjs/lib");
+fs.writeFileSync(`${__dirname}/../../dist/esm/main.d.mts`, dtsContent);
