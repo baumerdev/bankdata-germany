@@ -57,7 +57,7 @@ export const dateObject = (date?: string | Date): Date => {
 export const combineCurrentNext = (
   current: Banks,
   nextUpsert: Banks,
-  nextRemove: string[]
+  nextRemove: string[],
 ): Banks => {
   const combinedData: Banks = { ...current, ...nextUpsert };
 
@@ -94,7 +94,7 @@ export const bankDataSet = (date?: string | Date): Banks => {
  */
 export const bankDataByBLZ = (
   blz: string,
-  date?: string | Date
+  date?: string | Date,
 ): BankData | null => {
   if (!blz.match(/^[1-9]\d{7}$/)) {
     return null;
@@ -121,7 +121,7 @@ export const bankDataByBLZ = (
  */
 export const bankDataByBBAN = (
   bban: ProbablyString,
-  date?: string | Date
+  date?: string | Date,
 ): BankData | null => {
   const blz = extractBLZFromBBAN(bban);
   if (!blz) {
@@ -140,7 +140,7 @@ export const bankDataByBBAN = (
  */
 export const bankDataByIBAN = (
   iban: ProbablyString,
-  date?: string | Date
+  date?: string | Date,
 ): BankData | null => {
   if (!iban || !iban.match(/^DE\d{20}$/i)) {
     return null;
@@ -158,7 +158,7 @@ export const bankDataByIBAN = (
  */
 export const bankDataByBIC = (
   bic: ProbablyString,
-  date?: string | Date
+  date?: string | Date,
 ): BankData | null => {
   if (!bic || !bic.match(/^[A-Z]{4}DE[A-Z0-9]{2}([A-Z0-9]{3})?$/i)) {
     return null;
@@ -167,7 +167,7 @@ export const bankDataByBIC = (
   const searchBIC = `${bic.toUpperCase()}${bic.length === 8 ? "XXX" : ""}`;
 
   const result = Object.entries(bankDataSet(date)).find(
-    ([, bank]) => bank[1] && bank[1] === searchBIC
+    ([, bank]) => bank[1] && bank[1] === searchBIC,
   );
 
   if (!result) {

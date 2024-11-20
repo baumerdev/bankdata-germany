@@ -28,7 +28,7 @@ const esmWrapper = [
   'import * as main from "../cjs/main.js";',
   "export default main;",
   ...mainExports.map(
-    (mainExport) => `export const ${mainExport} = main.${mainExport};`
+    (mainExport) => `export const ${mainExport} = main.${mainExport};`,
   ),
 ].join("\n");
 

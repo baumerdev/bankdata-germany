@@ -22,7 +22,7 @@ import { isValidBIC } from "./lib/validate";
 declare global {
   interface Window {
     bankdataGermany: {
-      // eslint-disable-next-line @typescript-eslint/ban-types
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
       [name: string]: Function;
     };
   }

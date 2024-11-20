@@ -24,7 +24,7 @@ import * as fs from "fs";
 // https://www.bundesbank.de/de/aufgaben/unbarer-zahlungsverkehr/serviceangebot/bankleitzahlen/download-bankleitzahlen-602592
 const blzFile = fs.readFileSync(
   `${__dirname}/../data/blz-aktuell-txt-data.txt`,
-  "latin1"
+  "latin1",
 );
 
 const datasets = blzFile
@@ -71,7 +71,7 @@ masterDatasets.forEach((dataset) => {
 if (!fs.existsSync(`${__dirname}/../data/current.json`)) {
   fs.writeFileSync(
     `${__dirname}/../data/current.json`,
-    JSON.stringify(dataBank)
+    JSON.stringify(dataBank),
   );
 
   process.exit(0);
@@ -80,7 +80,7 @@ if (!fs.existsSync(`${__dirname}/../data/current.json`)) {
 if (
   typeof process.argv[2] !== "string" ||
   !process.argv[2].match(
-    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:UTC|[+-]\d{4})/
+    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:UTC|[+-]\d{4})/,
   )
 ) {
   console.error("Please provide a valid-from datetime");
@@ -127,5 +127,5 @@ fs.writeFileSync(
     remove: removedData,
     upsert: upsertData,
     valid: process.argv[2],
-  })
+  }),
 );

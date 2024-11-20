@@ -47,7 +47,7 @@ describe("dateObject", () => {
   });
   it("creates correct date object from string", () => {
     expect(dateObject("2022-03-04T05:06:07+0800")).toEqual(
-      new Date("2022-03-04T05:06:07+0800")
+      new Date("2022-03-04T05:06:07+0800"),
     );
   });
   it("creates current date object for undefined param", () => {
@@ -70,7 +70,7 @@ describe("combineCurrentNext", () => {
 
   it("correctly builds combined data", () => {
     expect(
-      combineCurrentNext(exampleCurrent, exampleNextUpsert, exampleNextRemove)
+      combineCurrentNext(exampleCurrent, exampleNextUpsert, exampleNextRemove),
     ).toEqual({
       "22222222": ["c", "d"],
       "33333333": ["e", "f"],
@@ -116,7 +116,7 @@ describe("bankDataByBLZ with next", () => {
   const combinedCheckDigits = combineCurrentNext(
     currentBank,
     (nextBank as NextBanks).upsert,
-    (nextBank as NextBanks).remove
+    (nextBank as NextBanks).remove,
   );
 
   Object.keys(combinedCheckDigits).forEach((blz) => {
@@ -124,7 +124,7 @@ describe("bankDataByBLZ with next", () => {
     const blzObject = { bankName: blzData[0], bic: blzData[1], blz };
     it(`returns correct data for BLZ ${blz}`, () => {
       expect(bankDataByBLZ(String(blz), new Date(nextValidDate))).toEqual(
-        blzObject
+        blzObject,
       );
     });
   });
