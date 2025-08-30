@@ -231,39 +231,39 @@ describe("bankDataByIBAN", () => {
   });
 });
 
-describe("Change 2025-06-09", () => {
-  test("BLZ 30013300 is unknown before valid-from date", () => {
-    expect(bankDataByBLZ("30013300", new Date(0))).toEqual(null);
+describe("Change 2025-09-08", () => {
+  test("BLZ 21050055 is unknown before valid-from date", () => {
+    expect(bankDataByBLZ("21050055", new Date(0))).toEqual(null);
   });
-  test("BLZ 30013300 has data at valid-from date", () => {
-    expect(bankDataByBLZ("30013300", new Date(nextValidDate))).toEqual({
-      bankName: "EburyPartners Belgium, Zweigniederlassung Deutschland",
-      bic: "EBPBDED2XXX",
-      blz: "30013300",
+  test("BLZ 21050055 has data at valid-from date", () => {
+    expect(bankDataByBLZ("21050055", new Date(nextValidDate))).toEqual({
+      bankName: "Hamburg Commercial Bank, GF Retail",
+      bic: "HSHNDEHH555",
+      blz: "21050055",
     });
   });
-  test("BLZ 11010100 has data before valid-from date", () => {
-    expect(bankDataByBLZ("11010100", new Date(0))).toEqual({
-      bankName: "solarisBank",
-      bic: "SOBKDEBBXXX",
-      blz: "11010100",
+  test("BLZ 10050000 has data before valid-from date", () => {
+    expect(bankDataByBLZ("10050000", new Date(0))).toEqual({
+      bankName: "Landesbank Berlin - Berliner Sparkasse",
+      bic: "BELADEBEXXX",
+      blz: "10050000",
     });
   });
-  test("BLZ 11010100 has new data at valid-from date", () => {
-    expect(bankDataByBLZ("11010100", new Date(nextValidDate))).toEqual({
-      bankName: "Solaris",
-      bic: "SOBKDEBBXXX",
-      blz: "11010100",
+  test("BLZ 10050000 has new data at valid-from date", () => {
+    expect(bankDataByBLZ("10050000", new Date(nextValidDate))).toEqual({
+      bankName: "BSK 1818 - Berliner Sparkasse",
+      bic: "BELADEBEXXX",
+      blz: "10050000",
     });
   });
-  test("BLZ 21000000 has data before valid-from date", () => {
-    expect(bankDataByBLZ("21000000", new Date(0))).toEqual({
-      bankName: "Bundesbank eh Kiel",
-      bic: "MARKDEF1210",
-      blz: "21000000",
+  test("BLZ 50961312 has data before valid-from date", () => {
+    expect(bankDataByBLZ("50961312", new Date(0))).toEqual({
+      bankName: "Raiffeisenbank Groß-Rohrheim",
+      bic: "GENODE51GRM",
+      blz: "50961312",
     });
   });
-  test("BLZ 21000000 is unknown at valid-from date", () => {
-    expect(bankDataByBLZ("21000000", new Date(nextValidDate))).toEqual(null);
+  test("BLZ 50961312 is unknown at valid-from date", () => {
+    expect(bankDataByBLZ("50961312", new Date(nextValidDate))).toEqual(null);
   });
 });

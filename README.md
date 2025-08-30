@@ -1,6 +1,6 @@
 # BankData-Germany: Data and BIC Validator for German Banks.
 
-![CI: Lint, test and build](https://github.com/baumerdev/bankdata-germany/workflows/Lint,%20test%20and%20build/badge.svg?branch=main)
+![CI: Lint, test and build](https://github.com/baumerdev/bankdata-germany/workflows/Lint,%20test%20and%20build/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/baumerdev/bankdata-germany/badge.svg?branch=main)](https://coveralls.io/github/baumerdev/bankdata-germany?branch=main)
 
 This TypeScript/JavaScript library contains bank data for German banks, such
@@ -11,7 +11,7 @@ the bank name and BIC fields.
 This library is not an IBAN validator itself. If you require validation,
 please refer to the main project. [IBANTools-Germany](https://baumerdev.github.io/ibantools-germany/).
 
-> _Version 1.2501.* includes data from 2025-03-03 to 2025-06-08, as well as from 2025-06-09 to 2025-09-07. Bank data will be valid according to your system time (data changes at midnight CEST on 2025-06-09)._
+> _Version 1.2502.* includes data from 2025-06-09 to 2025-09-07, as well as from 2025-09-08 to 2025-12-07. Validation will be based on the data that is valid according to your system time (data changes at midnight CEST on 2025-06-09)._
 
 * [Installation](#installation)
 * [Usage](#usage)
