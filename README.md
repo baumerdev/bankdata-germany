@@ -11,7 +11,7 @@ the bank name and BIC fields.
 This library is not an IBAN validator itself. If you require validation,
 please refer to the main project. [IBANTools-Germany](https://baumerdev.github.io/ibantools-germany/).
 
-> _Version 1.2502.* includes data from 2025-06-09 to 2025-09-07, as well as from 2025-09-08 to 2025-12-07. Validation will be based on the data that is valid according to your system time (data changes at midnight CEST on 2025-06-09)._
+> _Version 1.2503.* includes data from 2025-09-08 to 2025-12-07, as well as from 2025-12-08 to 2026-03-07. Validation will be based on the data that is valid according to your system time (data changes at midnight CET on 2025-12-08)._
 
 * [Installation](#installation)
 * [Usage](#usage)
@@ -80,7 +80,7 @@ import { isValidBIC } from "bankdata-germany"
 isValidBIC("MARKDEFF"); // true
 isValidBIC("MARKDEFFXXX"); // true
 isValidBIC("foobar"); // false (invalid format)
-isValidBIC("BNPAFRPH"); // false (corrent but not a German BIC)
+isValidBIC("BNPAFRPH"); // false (correct but not a German BIC)
 ```
 
 ### Browser / CDN
