@@ -231,39 +231,40 @@ describe("bankDataByIBAN", () => {
   });
 });
 
-describe("Change 2025-12-08", () => {
-  test("BLZ 70022424 is unknown before valid-from date", () => {
-    expect(bankDataByBLZ("70022424", new Date(0))).toEqual(null);
+describe("Change 2026-03-09", () => {
+  test("BLZ 50215500 is unknown before valid-from date", () => {
+    expect(bankDataByBLZ("50215500", new Date(0))).toEqual(null);
   });
-  test("BLZ 70022424 has data at valid-from date", () => {
-    expect(bankDataByBLZ("70022424", new Date(nextValidDate))).toEqual({
-      bankName: "Scalable Capital Bank",
-      bic: "SCABDEMMXXX",
-      blz: "70022424",
+  test("BLZ 50215500 has data at valid-from date", () => {
+    expect(bankDataByBLZ("50215500", new Date(nextValidDate))).toEqual({
+      bankName: "Hauck Aufhäuser Lampe Privatbank",
+      bic: "ABASDEFFXXX",
+      blz: "50215500",
     });
   });
-  test("BLZ 10030200 has data before valid-from date", () => {
-    expect(bankDataByBLZ("10030200", new Date(0))).toEqual({
-      bankName: "Berlin Hyp",
-      bic: "BHYPDEB2XXX",
-      blz: "10030200",
+  test("BLZ 21050055 has data before valid-from date", () => {
+    expect(bankDataByBLZ("21050055", new Date(0))).toEqual({
+      bankName: "Hamburg Commercial Bank, GF Retail",
+      bic: "HHDBDEH2XXX",
+      blz: "21050055",
     });
   });
-  test("BLZ 10030200 has new data at valid-from date", () => {
-    expect(bankDataByBLZ("10030200", new Date(nextValidDate))).toEqual({
-      bankName: "Landesbank Baden-Württemberg",
-      bic: "BHYPDEB2XXX",
-      blz: "10030200",
+  test("BLZ 21050055 has new data at valid-from date", () => {
+    expect(bankDataByBLZ("21050055", new Date(nextValidDate))).toEqual({
+      bankName: "Hamburg Commercial Bank, Gf Hamburg Direct Bank",
+      bic: "HHDBDEH2XXX",
+      blz: "21050055",
     });
   });
-  test("BLZ 10030700 has data before valid-from date", () => {
-    expect(bankDataByBLZ("10030700", new Date(0))).toEqual({
-      bankName: "Eurocity Bank",
-      bic: "DLGHDEB1XXX",
-      blz: "10030700",
-    });
-  });
-  test("BLZ 10030700 is unknown at valid-from date", () => {
-    expect(bankDataByBLZ("10030700", new Date(nextValidDate))).toEqual(null);
-  });
+  // No removals in this update
+  // test("BLZ 10030700 has data before valid-from date", () => {
+  //   expect(bankDataByBLZ("10030700", new Date(0))).toEqual({
+  //     bankName: "Eurocity Bank",
+  //     bic: "DLGHDEB1XXX",
+  //     blz: "10030700",
+  //   });
+  // });
+  // test("BLZ 10030700 is unknown at valid-from date", () => {
+  //   expect(bankDataByBLZ("10030700", new Date(nextValidDate))).toEqual(null);
+  // });
 });
