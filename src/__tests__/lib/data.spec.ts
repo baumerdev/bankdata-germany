@@ -1,34 +1,21 @@
-/**
+/*!
  * bankdata-germany
- * Copyright (C) 2022-2024 Markus Baumer <markus@baumer.dev>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
-
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
-
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Copyright (c) 2022-2026 Markus Baumer <markus@baumer.dev>
+ * SPDX-License-Identifier: MIT OR MPL-2.0
  */
-
 import currentBank from "../../data/current.json";
 import nextBank from "../../data/next.json";
 import {
+  type Banks,
   bankDataByBBAN,
   bankDataByBIC,
   bankDataByBLZ,
   bankDataByIBAN,
   bankDataSet,
-  Banks,
   combineCurrentNext,
   dateObject,
   isBICInData,
-  NextBanks,
+  type NextBanks,
 } from "../../lib/data";
 
 const nextValidDate = new Date((nextBank as NextBanks).valid);
@@ -90,13 +77,13 @@ describe("bankDataSet", () => {
 });
 
 describe("bankDataByBLZ without next", () => {
-  Object.keys(currentBank as Banks).forEach((blz) => {
+  for (const blz of Object.keys(currentBank as Banks)) {
     const blzData = (currentBank as Banks)[blz];
     const blzObject = { bankName: blzData[0], bic: blzData[1], blz };
     it(`returns correct data for BLZ ${blz}`, () => {
       expect(bankDataByBLZ(String(blz), new Date(0))).toEqual(blzObject);
     });
-  });
+  }
 
   it("returns null for unknown BLZ 12345678", () => {
     expect(bankDataByBLZ("12345678", new Date(0))).toEqual(null);
@@ -119,7 +106,7 @@ describe("bankDataByBLZ with next", () => {
     (nextBank as NextBanks).remove,
   );
 
-  Object.keys(combinedCheckDigits).forEach((blz) => {
+  for (const blz of Object.keys(combinedCheckDigits)) {
     const blzData = combinedCheckDigits[blz];
     const blzObject = { bankName: blzData[0], bic: blzData[1], blz };
     it(`returns correct data for BLZ ${blz}`, () => {
@@ -127,7 +114,7 @@ describe("bankDataByBLZ with next", () => {
         blzObject,
       );
     });
-  });
+  }
 
   it("returns null for unknown BLZ 12345678", () => {
     expect(bankDataByBLZ("12345678", new Date(nextValidDate))).toEqual(null);
@@ -231,40 +218,39 @@ describe("bankDataByIBAN", () => {
   });
 });
 
-describe("Change 2026-03-09", () => {
-  test("BLZ 50215500 is unknown before valid-from date", () => {
-    expect(bankDataByBLZ("50215500", new Date(0))).toEqual(null);
+describe("Change 2026-06-08", () => {
+  test("BLZ 12030030 is unknown before valid-from date", () => {
+    expect(bankDataByBLZ("12030030", new Date(0))).toEqual(null);
   });
-  test("BLZ 50215500 has data at valid-from date", () => {
-    expect(bankDataByBLZ("50215500", new Date(nextValidDate))).toEqual({
-      bankName: "Hauck Aufhäuser Lampe Privatbank",
-      bic: "ABASDEFFXXX",
-      blz: "50215500",
+  test("BLZ 12030030 has data at valid-from date", () => {
+    expect(bankDataByBLZ("12030030", new Date(nextValidDate))).toEqual({
+      bankName: "Deutsche Kreditbank (Gf WP)",
+      bic: "BYLADEM1001",
+      blz: "12030030",
     });
   });
-  test("BLZ 21050055 has data before valid-from date", () => {
-    expect(bankDataByBLZ("21050055", new Date(0))).toEqual({
-      bankName: "Hamburg Commercial Bank, GF Retail",
-      bic: "HHDBDEH2XXX",
-      blz: "21050055",
+  test("BLZ 10030200 has data before valid-from date", () => {
+    expect(bankDataByBLZ("10030200", new Date(0))).toEqual({
+      bankName: "Landesbank Baden-Württemberg",
+      bic: "BHYPDEB2XXX",
+      blz: "10030200",
     });
   });
-  test("BLZ 21050055 has new data at valid-from date", () => {
-    expect(bankDataByBLZ("21050055", new Date(nextValidDate))).toEqual({
-      bankName: "Hamburg Commercial Bank, Gf Hamburg Direct Bank",
-      bic: "HHDBDEH2XXX",
-      blz: "21050055",
+  test("BLZ 10030200 is unknown at valid-from date", () => {
+    expect(bankDataByBLZ("10030200", new Date(nextValidDate))).toEqual(null);
+  });
+  test("BLZ 10033300 has data before valid-from date", () => {
+    expect(bankDataByBLZ("10033300", new Date(0))).toEqual({
+      bankName: "Santander Consumer Bank",
+      bic: "SCFBDE33XXX",
+      blz: "10033300",
     });
   });
-  // No removals in this update
-  // test("BLZ 10030700 has data before valid-from date", () => {
-  //   expect(bankDataByBLZ("10030700", new Date(0))).toEqual({
-  //     bankName: "Eurocity Bank",
-  //     bic: "DLGHDEB1XXX",
-  //     blz: "10030700",
-  //   });
-  // });
-  // test("BLZ 10030700 is unknown at valid-from date", () => {
-  //   expect(bankDataByBLZ("10030700", new Date(nextValidDate))).toEqual(null);
-  // });
+  test("BLZ 10033300 has new data at valid-from date", () => {
+    expect(bankDataByBLZ("10033300", new Date(nextValidDate))).toEqual({
+      bankName: "Openbank Deutschland",
+      bic: "SCFBDE33XXX",
+      blz: "10033300",
+    });
+  });
 });
