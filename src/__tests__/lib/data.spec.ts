@@ -236,39 +236,39 @@ describe("bankDataByIBAN", () => {
   });
 });
 
-describe("Change 2026-06-08", () => {
-  test("BLZ 12030030 is unknown before valid-from date", () => {
-    expect(bankDataByBLZ("12030030", new Date(0))).toEqual(null);
+describe("Change 2026-09-07", () => {
+  test("BLZ 50120801 is unknown before valid-from date", () => {
+    expect(bankDataByBLZ("50120801", new Date(0))).toEqual(null);
   });
-  test("BLZ 12030030 has data at valid-from date", () => {
-    expect(bankDataByBLZ("12030030", new Date(nextValidDate))).toEqual({
-      bankName: "Deutsche Kreditbank (Gf WP)",
-      bic: "BYLADEM1001",
-      blz: "12030030",
+  test("BLZ 50120801 has data at valid-from date", () => {
+    expect(bankDataByBLZ("50120801", new Date(nextValidDate))).toEqual({
+      bankName: "UniCredit German Branch - Gf Mass settlements",
+      bic: "BMPBDEF2XXX",
+      blz: "50120801",
     });
   });
-  test("BLZ 10030200 has data before valid-from date", () => {
-    expect(bankDataByBLZ("10030200", new Date(0))).toEqual({
-      bankName: "Landesbank Baden-Württemberg",
-      bic: "BHYPDEB2XXX",
-      blz: "10030200",
+  test("BLZ 65461878 has data before valid-from date", () => {
+    expect(bankDataByBLZ("65461878", new Date(0))).toEqual({
+      bankName: "Raiffeisenbank Biberach -alt-",
+      bic: "GENODES1WAR",
+      blz: "65461878",
     });
   });
-  test("BLZ 10030200 is unknown at valid-from date", () => {
-    expect(bankDataByBLZ("10030200", new Date(nextValidDate))).toEqual(null);
+  test("BLZ 65461878 is unknown at valid-from date", () => {
+    expect(bankDataByBLZ("65461878", new Date(nextValidDate))).toEqual(null);
   });
-  test("BLZ 10033300 has data before valid-from date", () => {
-    expect(bankDataByBLZ("10033300", new Date(0))).toEqual({
-      bankName: "Santander Consumer Bank",
-      bic: "SCFBDE33XXX",
-      blz: "10033300",
+  test("BLZ 10010123 has data before valid-from date", () => {
+    expect(bankDataByBLZ("10010123", new Date(0))).toEqual({
+      bankName: "OLINDA Zweigniederlassung Deutschland",
+      bic: "QNTODEB2XXX",
+      blz: "10010123",
     });
   });
-  test("BLZ 10033300 has new data at valid-from date", () => {
-    expect(bankDataByBLZ("10033300", new Date(nextValidDate))).toEqual({
-      bankName: "Openbank Deutschland",
-      bic: "SCFBDE33XXX",
-      blz: "10033300",
+  test("BLZ 10010123 has new data at valid-from date", () => {
+    expect(bankDataByBLZ("10010123", new Date(nextValidDate))).toEqual({
+      bankName: "Qonto Zweigniederlassung Deutschland",
+      bic: "QNTODEB2XXX",
+      blz: "10010123",
     });
   });
 });

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-08 [v2.2602.0]
+
+* Additionally includes data valid from 2026-09-07, removes data valid before 2026-06-08
+* Fix: `bankDataByBIC` is now available in the browser bundle
+* Fix: `bankDataByBLZ` no longer throws on `null`/`undefined` input
+* Fix: invalid `date` parameters return `null` instead of falling back to current data
+* Faster lookups (cached data set and BIC map)
+
 ## 2026-05-13 [v2.2601.0]
 
 * License change from AGPL-3.0-only to MIT OR MPL-2.0 (same dual-license as ibantools-germany)
