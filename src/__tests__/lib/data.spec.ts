@@ -38,7 +38,10 @@ describe("dateObject", () => {
     );
   });
   it("creates current date object for undefined param", () => {
-    expect(dateObject().toUTCString()).toEqual(new Date().toUTCString());
+    const before = Date.now();
+    const result = dateObject().getTime();
+    expect(result).toBeGreaterThanOrEqual(before);
+    expect(result).toBeLessThanOrEqual(Date.now());
   });
 });
 
@@ -96,6 +99,12 @@ describe("bankDataByBLZ without next", () => {
   });
   it("returns null for BLZ 123_5678 (invalid char)", () => {
     expect(bankDataByBLZ("123_5678", new Date(0))).toEqual(null);
+  });
+  it("returns null for BLZ null (not a string)", () => {
+    expect(bankDataByBLZ(null, new Date(0))).toEqual(null);
+  });
+  it("returns null for BLZ undefined (not a string)", () => {
+    expect(bankDataByBLZ(undefined, new Date(0))).toEqual(null);
   });
 });
 

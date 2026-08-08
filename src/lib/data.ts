@@ -55,6 +55,9 @@ export const combineCurrentNext = (
   return combinedData;
 };
 
+const nextValidFrom = new Date(nextBank.valid);
+let combinedBanks: Banks | undefined;
+
 /**
  * Get data, either current or combined with next by comparing it to valid-to
  * date from next data
@@ -62,14 +65,38 @@ export const combineCurrentNext = (
  * @returns
  */
 export const bankDataSet = (date?: string | Date): Banks => {
-  const nextValidFrom = new Date(nextBank.valid);
-  const currentDate = dateObject(date);
-
-  if (currentDate >= nextValidFrom) {
-    return combineCurrentNext(currentBank, nextBank.upsert, nextBank.remove);
+  if (dateObject(date) >= nextValidFrom) {
+    combinedBanks ??= combineCurrentNext(
+      currentBank,
+      nextBank.upsert,
+      nextBank.remove,
+    );
+    return combinedBanks;
   }
 
   return currentBank;
+};
+
+const bicMaps = new WeakMap<Banks, Map<string, string>>();
+
+/**
+ * Get (and lazily build) a BIC to BLZ lookup map for a data set
+ */
+const bicMap = (data: Banks): Map<string, string> => {
+  let map = bicMaps.get(data);
+  if (!map) {
+    map = new Map();
+
+    for (const [blz, bank] of Object.entries(data)) {
+      if (bank[1] && !map.has(bank[1])) {
+        map.set(bank[1], blz);
+      }
+    }
+
+    bicMaps.set(data, map);
+  }
+
+  return map;
 };
 
 /**
@@ -80,10 +107,10 @@ export const bankDataSet = (date?: string | Date): Banks => {
  * @returns Bank data or null if invalid
  */
 export const bankDataByBLZ = (
-  blz: string,
+  blz: ProbablyString,
   date?: string | Date,
 ): BankData | null => {
-  if (!blz.match(/^[1-9]\d{7}$/)) {
+  if (!blz?.match(/^[1-9]\d{7}$/)) {
     return null;
   }
 
@@ -153,18 +180,16 @@ export const bankDataByBIC = (
 
   const searchBIC = `${bic.toUpperCase()}${bic.length === 8 ? "XXX" : ""}`;
 
-  const result = Object.entries(bankDataSet(date)).find(
-    ([, bank]) => bank[1] && bank[1] === searchBIC,
-  );
-
-  if (!result) {
+  const data = bankDataSet(date);
+  const blz = bicMap(data).get(searchBIC);
+  if (!blz) {
     return null;
   }
 
   return {
-    bankName: result[1][0],
-    bic: result[1][1],
-    blz: result[0],
+    bankName: data[blz][0],
+    bic: data[blz][1],
+    blz,
   };
 };
 
