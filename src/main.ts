@@ -9,15 +9,14 @@ import {
   bankDataByBLZ,
   bankDataByIBAN,
 } from "./lib/data";
-import { BankData, ProbablyString } from "./lib/types";
+import type { BankData, ProbablyString } from "./lib/types";
 import { isValidBIC } from "./lib/validate";
 
+export type { BankData, ProbablyString };
 export {
-  BankData,
   bankDataByBBAN,
   bankDataByBIC,
   bankDataByBLZ,
   bankDataByIBAN,
   isValidBIC,
-  ProbablyString,
 };

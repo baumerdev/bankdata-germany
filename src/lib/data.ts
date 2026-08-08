@@ -64,8 +64,13 @@ let combinedBanks: Banks | undefined;
  * @param date
  * @returns
  */
-export const bankDataSet = (date?: string | Date): Banks => {
-  if (dateObject(date) >= nextValidFrom) {
+export const bankDataSet = (date?: string | Date): Banks | null => {
+  const currentDate = dateObject(date);
+  if (Number.isNaN(currentDate.getTime())) {
+    return null;
+  }
+
+  if (currentDate >= nextValidFrom) {
     combinedBanks ??= combineCurrentNext(
       currentBank,
       nextBank.upsert,
@@ -114,7 +119,7 @@ export const bankDataByBLZ = (
     return null;
   }
 
-  const bankData = bankDataSet(date)[blz];
+  const bankData = bankDataSet(date)?.[blz];
   if (!bankData) {
     return null;
   }
@@ -148,7 +153,7 @@ export const bankDataByBBAN = (
 /**
  * Get name (and BIC if available) for bank with given IBAN
  *
- * @param bban German IBAN with 22 digits
+ * @param iban German IBAN with 22 digits
  * @param date Bank data valid at this date (default: current date)
  * @returns Bank data or null if invalid
  */
@@ -181,7 +186,7 @@ export const bankDataByBIC = (
   const searchBIC = `${bic.toUpperCase()}${bic.length === 8 ? "XXX" : ""}`;
 
   const data = bankDataSet(date);
-  const blz = bicMap(data).get(searchBIC);
+  const blz = data && bicMap(data).get(searchBIC);
   if (!blz) {
     return null;
   }
@@ -194,7 +199,7 @@ export const bankDataByBIC = (
 };
 
 /**
- * Search all bank data and check if any contains the BIC
+ * Check whether the BIC exists in the bank data
  *
  * @param bic BIC to search for
  * @param date Bank data valid at this date (default: current date)

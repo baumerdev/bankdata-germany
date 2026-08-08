@@ -77,6 +77,9 @@ describe("bankDataSet", () => {
   it("returns modified data if valid date is reached", () => {
     expect(bankDataSet(nextValidDate)).not.toEqual(currentBank);
   });
+  it("returns null for invalid date string", () => {
+    expect(bankDataSet("invalid")).toEqual(null);
+  });
 });
 
 describe("bankDataByBLZ without next", () => {
@@ -105,6 +108,9 @@ describe("bankDataByBLZ without next", () => {
   });
   it("returns null for BLZ undefined (not a string)", () => {
     expect(bankDataByBLZ(undefined, new Date(0))).toEqual(null);
+  });
+  it("returns null for invalid date string", () => {
+    expect(bankDataByBLZ("10000000", "invalid")).toEqual(null);
   });
 });
 
@@ -174,6 +180,9 @@ describe("bankDataByBIC", () => {
   });
   it("returns null for unknown BIC AAAADE00000", () => {
     expect(bankDataByBIC("AAAADE00000")).toEqual(null);
+  });
+  it("returns null for invalid date string", () => {
+    expect(bankDataByBIC("MARKDEF1100", "invalid")).toEqual(null);
   });
 });
 
