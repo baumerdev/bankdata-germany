@@ -3,7 +3,12 @@
  * Copyright (c) 2022-2026 Markus Baumer <markus@baumer.dev>
  * SPDX-License-Identifier: MIT OR MPL-2.0
  */
-import { bankDataByBBAN, bankDataByBLZ, bankDataByIBAN } from "./lib/data";
+import {
+  bankDataByBBAN,
+  bankDataByBIC,
+  bankDataByBLZ,
+  bankDataByIBAN,
+} from "./lib/data";
 import { isValidBIC } from "./lib/validate";
 
 declare global {
@@ -20,6 +25,7 @@ if (typeof window.bankdataGermany === "undefined") {
 }
 
 window.bankdataGermany.bankDataByBBAN = bankDataByBBAN;
+window.bankdataGermany.bankDataByBIC = bankDataByBIC;
 window.bankdataGermany.bankDataByBLZ = bankDataByBLZ;
 window.bankdataGermany.bankDataByIBAN = bankDataByIBAN;
 window.bankdataGermany.isValidBIC = isValidBIC;

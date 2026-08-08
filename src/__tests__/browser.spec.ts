@@ -12,6 +12,9 @@ describe("browser", () => {
   it("adds function bankdataGermany.bankDataByBBAN to window", () => {
     expect(typeof window.bankdataGermany.bankDataByBBAN).toBe("function");
   });
+  it("adds function bankdataGermany.bankDataByBIC to window", () => {
+    expect(typeof window.bankdataGermany.bankDataByBIC).toBe("function");
+  });
   it("adds function bankdataGermany.bankDataByBLZ to window", () => {
     expect(typeof window.bankdataGermany.bankDataByBLZ).toBe("function");
   });
