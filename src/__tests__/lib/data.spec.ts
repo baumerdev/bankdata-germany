@@ -236,39 +236,39 @@ describe("bankDataByIBAN", () => {
   });
 });
 
-describe("Change 2026-09-07", () => {
-  test("BLZ 50120801 is unknown before valid-from date", () => {
-    expect(bankDataByBLZ("50120801", new Date(0))).toEqual(null);
+describe("Change 2026-12-07", () => {
+  test("BLZ 10110601 is unknown before valid-from date", () => {
+    expect(bankDataByBLZ("10110601", new Date(0))).toEqual(null);
   });
-  test("BLZ 50120801 has data at valid-from date", () => {
-    expect(bankDataByBLZ("50120801", new Date(nextValidDate))).toEqual({
-      bankName: "UniCredit German Branch - Gf Mass settlements",
-      bic: "BMPBDEF2XXX",
-      blz: "50120801",
+  test("BLZ 10110601 has data at valid-from date", () => {
+    expect(bankDataByBLZ("10110601", new Date(nextValidDate))).toEqual({
+      bankName: "Quirin Privatbank",
+      bic: "QUBKDEB2XXX",
+      blz: "10110601",
     });
   });
-  test("BLZ 65461878 has data before valid-from date", () => {
-    expect(bankDataByBLZ("65461878", new Date(0))).toEqual({
-      bankName: "Raiffeisenbank Biberach -alt-",
-      bic: "GENODES1WAR",
-      blz: "65461878",
+  test("BLZ 69291099 has data before valid-from date", () => {
+    expect(bankDataByBLZ("69291099", new Date(0))).toEqual({
+      bankName: "Volksbank Gf GA",
+      bic: "GENODE61RAD",
+      blz: "69291099",
     });
   });
-  test("BLZ 65461878 is unknown at valid-from date", () => {
-    expect(bankDataByBLZ("65461878", new Date(nextValidDate))).toEqual(null);
+  test("BLZ 69291099 is unknown at valid-from date", () => {
+    expect(bankDataByBLZ("69291099", new Date(nextValidDate))).toEqual(null);
   });
-  test("BLZ 10010123 has data before valid-from date", () => {
-    expect(bankDataByBLZ("10010123", new Date(0))).toEqual({
-      bankName: "OLINDA Zweigniederlassung Deutschland",
-      bic: "QNTODEB2XXX",
-      blz: "10010123",
+  test("BLZ 37069412 has data before valid-from date", () => {
+    expect(bankDataByBLZ("37069412", new Date(0))).toEqual({
+      bankName: "Volksbank Heinsberg",
+      bic: "GENODED1HRB",
+      blz: "37069412",
     });
   });
-  test("BLZ 10010123 has new data at valid-from date", () => {
-    expect(bankDataByBLZ("10010123", new Date(nextValidDate))).toEqual({
-      bankName: "Qonto Zweigniederlassung Deutschland",
-      bic: "QNTODEB2XXX",
-      blz: "10010123",
+  test("BLZ 37069412 has new data at valid-from date", () => {
+    expect(bankDataByBLZ("37069412", new Date(nextValidDate))).toEqual({
+      bankName: "Volksbank im Westen",
+      bic: "GENODED1HRB",
+      blz: "37069412",
     });
   });
 });
